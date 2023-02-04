@@ -58,6 +58,8 @@ public class TestSQLConnection {
         popUp2.notValidPopUp();
         var popUp3 =loginPage.notValidLogin(authInfo);
         popUp3.notValidPopUp();
+        var popUp4 =loginPage.notValidLogin(authInfo);
+        popUp4.notValidPopUp();
     }
 
     @SneakyThrows
