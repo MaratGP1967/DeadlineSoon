@@ -1,11 +1,5 @@
-Thumbs.db*
-.DS_Store
 HELP.md
-gradlew
-*.gradle
-gradle/
-*.config
-*.bat
+.gradle
 build/
 
 ### STS ###
