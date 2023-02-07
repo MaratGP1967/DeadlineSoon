@@ -23,12 +23,16 @@ public class LoginPage {
     }
 
     public VerificationPage setLogin(DataHelper.AuthInfo info) {
+        enterAuth(info);
+        return new VerificationPage();
+    }
+
+    public void enterAuth(DataHelper.AuthInfo info) {
         loginField.sendKeys(Keys.chord(Keys.SHIFT, Keys.HOME), Keys.BACK_SPACE);
         loginField.setValue(info.getLogin());
         passwordField.sendKeys(Keys.chord(Keys.SHIFT, Keys.HOME), Keys.BACK_SPACE);
         passwordField.setValue(info.getPassword());
         loginButton.click();
-        return new VerificationPage();
     }
 
     public void notValidPopUp() {
@@ -37,5 +41,10 @@ public class LoginPage {
         icon.click();
     }
 
+    public void notValidPassPopUp() {
+        title.shouldBe(Condition.visible);
+        text.shouldHave(Condition.text("Ввод пароля заблокирован! Пароль введен не верно три раза.")).shouldBe(Condition.visible);
+        icon.click();
+    }
 
 }

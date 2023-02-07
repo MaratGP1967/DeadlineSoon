@@ -26,22 +26,22 @@ public class TestSQLConnection {
         var loginPage = new LoginPage();
         var authInfo = DataHelper.getAuthInfo();
         var verificationPage = loginPage.setLogin(authInfo);
-        var code = authInfo.getLogin();
-        verificationPage.validVerify(DBHelper.getAuthCode(code));
+        var verificationCode = DBHelper.getAuthCode(authInfo.getLogin());
+        verificationPage.validVerify(verificationCode);
     }
 
     @Test
     void shouldNotGetDashboardThreeTimesTest() {
         var loginPage = new LoginPage();
         var authInfo = DataHelper.getNotAuthInfo();
-        loginPage.setLogin(authInfo);
+        loginPage.enterAuth(authInfo);
         loginPage.notValidPopUp();
-        loginPage.setLogin(authInfo);
+        loginPage.enterAuth(authInfo);
         loginPage.notValidPopUp();
-        loginPage.setLogin(authInfo);
+        loginPage.enterAuth(authInfo);
         loginPage.notValidPopUp();
-        loginPage.setLogin(authInfo);
-        loginPage.notValidPopUp();
+        loginPage.enterAuth(authInfo);
+        loginPage.notValidPassPopUp();
     }
 
 }

@@ -2,16 +2,22 @@ package ru.netology.page;
 
 import com.codeborne.selenide.SelenideElement;
 import org.openqa.selenium.Keys;
+import ru.netology.data.DBHelper;
 
+import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
 
 public class VerificationPage {
     private SelenideElement codeField = $("[data-test-id=code] input");
     private SelenideElement verifyButton = $("[data-test-id=action-verify]");
 
-    public DashBoard validVerify(String verificationCode) {
+    public VerificationPage() {
+        codeField.shouldBe(visible);
+    }
+
+    public DashBoard validVerify(DBHelper.VerificationCode verificationCode) {
         codeField.sendKeys(Keys.chord(Keys.SHIFT, Keys.HOME), Keys.BACK_SPACE);
-        codeField.setValue(verificationCode);
+        codeField.setValue(verificationCode.getCode());
         verifyButton.click();
         return new DashBoard();
     }
